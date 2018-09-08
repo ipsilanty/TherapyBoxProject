@@ -503,13 +503,35 @@ img.th {
 }
 
 svg.peity {
-    width: 130px;
-    height: 130px;
+    width: 110px;
+    height: 110px;
+}
+
+.home-cards.big-pie svg.peity {
+    width: 250px;
+    height: 250px;
 }
 
 .search-btn {
     width: auto !important;
     margin-top: 18px;
+}
+
+.key-map .key-c {
+    display: flex;
+    flex-flow: row wrap;
+    margin-bottom: 10px;
+}
+
+.key-map .key {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+}
+
+.key-map .clothe {
+    display: inline-block;
+    padding-left: 10px;
 }
 
 @media (max-width: 767px) {
@@ -570,6 +592,10 @@ svg.peity {
         display: inline-block;
         margin-top: 20px;
         height: 30px;
+    }
+
+    .key-map {
+        margin-top: 30px;
     }
 }
 

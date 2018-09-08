@@ -111,11 +111,14 @@
                         <div class="widget-box">
                             <div class="card custom-card">
                                 <div class="card-header">
-                                    Clothes
+                                    <a href="clothes">Clothes</a>
                                 </div>
                                 <div class="card-body">
                                     <div class="col-12">
                                         <span class="pie-colours-1" style="display: none;"><?php echo $values["jumper"]; ?>,<?php echo $values["hoodie"]; ?>,<?php echo $values["jacket"]; ?>,<?php echo $values["sweater"]; ?>,<?php echo $values["blazer"]; ?>,<?php echo $values["raincoat"]; ?></span>
+                                    </div>
+                                    <div class="col-12">
+                                        <a href="clothes" style="font-size: .8rem;">View Key map</a>
                                     </div>
                                 </div>
                             </div>
