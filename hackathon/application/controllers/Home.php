@@ -55,12 +55,22 @@ class Home extends CI_Controller
         $this->load->model('TasksModel');
         $tasks = $this->TasksModel->get_tasks($this->session->userdata['user_id'], 3);
 
-        //Get clothes
-        $this->load->model('ClothesModel');
-        $clothes = $this->ClothesModel->get_count();
+        //Get clothes -  Read data from the json api instead of db
+        $clothingApi = 'https://therapy-box.co.uk/hackathon/clothing-api.php?username=swapnil';
+        $ch = curl_init($clothingApi);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $clothingJson = curl_exec($ch);
+        if(curl_error($ch)) {
+            echo 'error:' . curl_error($ch);
+        };
+        curl_close($ch);
+        $clothes = json_decode($clothingJson);
+
         $item = array();
-        foreach($clothes as $cl) {
-            array_push($item, $cl->clothe);
+        foreach($clothes->payload as $r) {
+            array_push($item, $r->clothe);
         }
         $values = array_count_values($item);
 

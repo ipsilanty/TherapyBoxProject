@@ -22,11 +22,26 @@ class Clothes extends CI_Controller
 
         $data = array();
 
-        $clothes = $this->ClothesModel->get_count();
+        // Read data from the json api instead of db
+        $clothingApi = 'https://therapy-box.co.uk/hackathon/clothing-api.php?username=swapnil';
+        $ch = curl_init($clothingApi);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $clothingJson = curl_exec($ch);
+        if(curl_error($ch)) {
+            echo 'error:' . curl_error($ch);
+        };
+        curl_close($ch);
+        $clothes = json_decode($clothingJson);
+
+        //$clothes = $this->ClothesModel->get_count();
+
         $item = array();
-        foreach($clothes as $cl) {
-            array_push($item, $cl->clothe);
+        foreach($clothes->payload as $r) {
+            array_push($item, $r->clothe);
         }
+
         $values = array_count_values($item);
 
         $data["values"] = $values;
